@@ -12,7 +12,7 @@ import { white, blue, purple } from '../utils/colors'
 
 export default class CreateDeck extends Component {
   state = {
-    title: 'Deck Title',
+    title: '',
   }
 
   submit = () => {
@@ -26,9 +26,9 @@ export default class CreateDeck extends Component {
         <Text style={styles.label} >
           What is the title of your new deck?
         </Text>
-        <TextInput 
+        <TextInput style={styles.input}
           value={title}
-          style={styles.input}
+          placeholder="Deck Title"
         />
         <SubmitBtn onPress={this.submit} />
       </KeyboardAvoidingView>
@@ -52,11 +52,11 @@ const styles = StyleSheet.create ( {
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    
   },
   label: {
     fontSize: 22,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 20,
   },
   input: {
     borderWidth: 2,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create ( {
     borderRadius: 5,
     borderColor: purple,
     alignSelf: 'stretch',
-    marginTop: 20,
+    padding: 10,
   },
   iosSubmitBtn: {
       backgroundColor: purple,
@@ -74,6 +74,7 @@ const styles = StyleSheet.create ( {
       marginLeft: 40,
       marginRight: 40,
       marginTop: 40,
+      marginBottom: 10,
    },
    androidBtn: {
       backgroundColor: purple,
@@ -86,6 +87,7 @@ const styles = StyleSheet.create ( {
       justifyContent: 'center',
       alignItems: 'center',
       marginTop: 40,
+      marginBottom: 10,
    },
    submitBtnText: {
      color: white,
