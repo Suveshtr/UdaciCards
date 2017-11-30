@@ -6,21 +6,57 @@ import {
   StyleSheet,
   TouchableOpacity,
   Platform,
+  Keyboard,
 } from 'react-native'
 import { white, blue, purple } from '../utils/colors'
-
+import { saveDeckTitle } from '../utils/api'
 
 export default class CreateDeck extends Component {
   state = {
     title: '',
+    error: {
+      status: false,
+      detail: '',
+    }
   }
 
   submit = () => {
+    const { title } = this.state
+    
+    Keyboard.dismiss()
 
+    if (title.length > 0) {
+      saveDeckTitle(title)
+        .then(() => this.setError(false, ''))
+    } else {
+      this.setError(true, 'Deck Title is empty!')
+    }
+  }
+
+  setError = (status, detail) => {
+    this.setState(() => ({
+        error : {
+          status,
+          detail
+        }
+      }))
+  }
+
+  handleTextChange = (input) => {
+
+    this.setState(() => ({
+      title: input,
+      error: {
+        status: false,
+        detail: ''
+      }
+    }))
+
+    
   }
 
   render () {
-    const { title } = this.state
+    const { title, error } = this.state
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container} >
         <Text style={styles.label} >
@@ -29,7 +65,11 @@ export default class CreateDeck extends Component {
         <TextInput style={styles.input}
           value={title}
           placeholder="Deck Title"
+          onChangeText={this.handleTextChange}
         />
+        { error.status && (
+          <Text style={{fontSize: 10, color: 'red'}} >{error.detail}</Text>
+        )}
         <SubmitBtn onPress={this.submit} />
       </KeyboardAvoidingView>
     )
