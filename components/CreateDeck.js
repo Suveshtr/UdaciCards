@@ -8,10 +8,12 @@ import {
   Platform,
   Keyboard,
 } from 'react-native'
+import { connect } from 'react-redux'
 import { white, blue, purple } from '../utils/colors'
 import { saveDeckTitle } from '../utils/api'
+import { addTitle, addCard } from '../actions'
 
-export default class CreateDeck extends Component {
+class CreateDeck extends Component {
   state = {
     title: '',
     error: {
@@ -22,12 +24,15 @@ export default class CreateDeck extends Component {
 
   submit = () => {
     const { title } = this.state
-    
+    const { navigation, dispatch } = this.props
+
     Keyboard.dismiss()
 
     if (title.length > 0) {
       saveDeckTitle(title)
         .then(() => this.setError(false, ''))
+        .then(dispatch(addTitle(title)))
+        .then(navigation.navigate('DeckDetail', {title: title}))
     } else {
       this.setError(true, 'Deck Title is empty!')
     }
@@ -86,6 +91,9 @@ function SubmitBtn ({ onPress }) {
    )
  }
 
+
+
+
 const styles = StyleSheet.create ( {
   container:{
     flex: 1,
@@ -136,3 +144,5 @@ const styles = StyleSheet.create ( {
      
    },
 })
+
+export default connect()(CreateDeck)
