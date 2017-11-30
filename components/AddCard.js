@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import { addCard } from '../actions'
 
+
+
 class AddCard extends Component {
   render () {
     return (
@@ -15,10 +17,4 @@ class AddCard extends Component {
   }
 }
 
-function mapStateToProps ( state ) {
-  return {
-    Decks: state
-  }
-}
-
-export default connect(mapStateToProps)(AddCard)
+export default connect()(AddCard)
