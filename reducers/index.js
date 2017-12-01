@@ -11,22 +11,27 @@ function decks ( state = {}, action ) {
         }
       }
     case ADD_CARD:
+     
       return {
         ...state,
-        [action.title] : addCard(...state[action.title], action)
+        [action.title] : addCard({...state[action.title]}, action)
       }
+
     default: 
       return state
   }
 }
 
 const addCard = ( state, action ) => {
+  
   switch ( action.type ) {
     case ADD_CARD:
       return {
         ...state,
-        questions: [...State['questions'], action.card]
+        questions: [...state['questions'], action.card]
       }
+    default:
+      return state
   }
 }
 

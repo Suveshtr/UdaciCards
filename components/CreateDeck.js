@@ -32,6 +32,7 @@ class CreateDeck extends Component {
       saveDeckTitle(title)
         .then(() => this.setError(false, ''))
         .then(dispatch(addTitle(title)))
+        .then(this.setState({title: '', error: { status: false, detail: ''}}))
         .then(navigation.navigate('DeckDetail', {title: title}))
     } else {
       this.setError(true, 'Deck Title is empty!')

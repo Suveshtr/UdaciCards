@@ -11,3 +11,12 @@ export function saveDeckTitle(title) {
     }
   }))
 }
+
+export function addCardToDeck(title, card) {
+   return AsyncStorage.mergeItem('UdaciCatds:decks', JSON.stringify({
+      [title]: {
+        title: title,
+        Questions: [card]
+      }
+    }))
+}

@@ -7,11 +7,11 @@ export function addTitle (title) {
     title
   }
 }
-
-export function addCard (title, question, answer) {
+// card => {question: '', answer: ''}
+export function addCard (title, card) {
   return {
     type: ADD_CARD,
     title,
-    card: {question: question, answer: answer}
+    card
   }
 }
