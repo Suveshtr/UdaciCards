@@ -1,26 +1,43 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native'
 import { connect } from 'react-redux'
-import { receiveDecks } from '../actions'
-import { getDecks } from '../utils/helpers'
-import DeckCard from './DeckCard'
+import { AppLoading} from 'expo'
 import { Ionicons } from '@expo/vector-icons'
+import { NavigationActions } from 'react-navigation'
+import { receiveDecks } from '../actions'
+import { getDecks, clearAll } from '../utils/api'
+import Card from './Card'
 
 class DeckList extends Component {
+  state = {
+    ready: false
+  }
   componentDidMount = () => {
+
     const { dispatch } = this.props
-    getDecks().then(decks => dispatch(receiveDecks(decks)))
+    getDecks().then(decks => {
+      dispatch(receiveDecks(decks))})
+      .then(() => this.setState(() => ({
+        ready: true
+      })))
   }
 
-  navigate = (deck) => {
+  navigate = (title) => {
+    
     this.props.navigation.navigate(
       'DeckDetail',
-      { deck }
+      { title }
     )
   }
 
   render() {
     const { decks, navigation } = this.props
+    const { ready } = this.state
+    
+    if (!ready) {
+      return <AppLoading />
+    }
+
     return (
       !decks || Object.keys(decks).length === 0
         ? (
@@ -34,7 +51,7 @@ class DeckList extends Component {
               <TouchableOpacity
                 style={[styles.borderedItem, styles.createDeckBtn]}
                 onPress={() => {
-                  navigation.navigate('DeckCreate')
+                  navigation.navigate('CreateDeck')
                 }}
               >
                 <Text>Create Deck</Text>
@@ -44,11 +61,11 @@ class DeckList extends Component {
         )
         : (
           <View style={styles.container}>
-            {decks && Object.keys(decks).map(deck => (
+            {decks && Object.keys(decks).map(deckKey => (
               <TouchableOpacity 
-                   style={[styles.row, styles.borderedItem]} key={decks[deck].title + '_row'} 
-                   onPress={() => this.navigate(deck)}>
-                <DeckCard key={decks[deck].title} deck={decks[deck]} />
+                   style={[styles.row, styles.borderedItem]} key={decks[deckKey].title + '_row'} 
+                   onPress={() => this.navigate(decks[deckKey].title)}>
+                <Card key={decks[deckKey].title} deck={decks[deckKey]} />
               </TouchableOpacity>
             ))}
           </View>
