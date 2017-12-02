@@ -47,7 +47,7 @@ const Tabs = TabNavigator({
     }
   },
   
-  Deck: {
+  CreateDeck: {
     screen: CreateDeck,
     navigationOptions: {
       tabBarLabel: 'New Deck',
