@@ -4,19 +4,23 @@ const DECK_STORAGE_KEY = 'UdaciCatds:decks'
 
 export function saveDeckTitle(title) {
   
-  return AsyncStorage.mergeItem('UdaciCatds:decks', JSON.stringify({
+  return AsyncStorage.mergeItem( DECK_STORAGE_KEY, JSON.stringify({
     [title]: {
       title: title,
-      Questions: []
+      questions: []
     }
   }))
 }
 
 export function addCardToDeck(title, card) {
-   return AsyncStorage.mergeItem('UdaciCatds:decks', JSON.stringify({
+   return AsyncStorage.mergeItem( DECK_STORAGE_KEY, JSON.stringify({
       [title]: {
         title: title,
-        Questions: [card]
+        questions: [card]
       }
     }))
+}
+
+export function getDecks () {
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
 }
