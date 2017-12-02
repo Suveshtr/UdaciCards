@@ -23,4 +23,5 @@ export function addCardToDeck(title, card) {
 
 export function getDecks () {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
+          .then(result => JSON.parse(result))
 }
