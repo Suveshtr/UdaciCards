@@ -1,5 +1,6 @@
 export const ADD_DECK_TITLE = 'ADD_DECK_TITLE'
 export const ADD_CARD = 'ADD_CARD'
+export const RECEIVE_DECKS = 'RECEIVE_CARDS'
 
 export function addTitle (title) {
   return {
@@ -13,5 +14,12 @@ export function addCard (title, card) {
     type: ADD_CARD,
     title,
     card
+  }
+}
+
+export function receiveDecks (decks)  {
+  return {
+    type: RECEIVE_DECKS,
+    decks
   }
 }
