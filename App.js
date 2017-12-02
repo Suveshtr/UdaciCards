@@ -10,6 +10,7 @@ import reducers from './reducers'
 import CreateDeck from './components/CreateDeck'
 import DeckDetail from './components/DeckDetail'
 import AddCard from './components/AddCard'
+import DeckList from './components/DeckList'
 
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -37,6 +38,15 @@ export default class App extends React.Component {
 }
 
 const Tabs = TabNavigator({
+  
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor}/>
+    }
+  },
+  
   Deck: {
     screen: CreateDeck,
     navigationOptions: {
