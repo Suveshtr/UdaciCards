@@ -13,8 +13,6 @@ class DeckDetail extends Component {
     }
   }
 
-
-
   render() {
     const { deck, navigation } = this.props
     
