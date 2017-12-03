@@ -11,6 +11,7 @@ import CreateDeck from './components/CreateDeck'
 import DeckDetail from './components/DeckDetail'
 import AddCard from './components/AddCard'
 import DeckList from './components/DeckList'
+import Quiz from './components/Quiz'
 
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
@@ -100,5 +101,15 @@ const MainNavigator = StackNavigator({
       }
     }
   },
+
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  }
   
 })
