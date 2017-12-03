@@ -15,13 +15,12 @@ class DeckDetail extends Component {
 
   render() {
     const { deck, navigation } = this.props
-    
     return (
       <View style={styles.container}>
         <Text style={{fontSize:45, color: purple}}>{deck.title}</Text>
         <Text style={{fontSize:24, color: gray}}>{deck.questions.length} Card(s)</Text>
         <AddBtn onPress={() => { navigation.navigate('AddCard', {deck} )}} />
-        <QuizBtn onPress={() => { navigation.navigate('DeckQuiz', {deck} )}} />
+        <QuizBtn onPress={() => { navigation.navigate('Quiz', {deck} )}} />
       </View>
     )
   }
@@ -46,8 +45,6 @@ function QuizBtn ({ onPress }) {
      </TouchableOpacity>
    )
  }
-
-
 
 function mapStateToProps(state, {navigation}) {
 
