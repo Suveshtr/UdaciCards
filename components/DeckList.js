@@ -5,7 +5,7 @@ import { AppLoading} from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 import { NavigationActions } from 'react-navigation'
 import { receiveDecks } from '../actions'
-import { getDecks, clearAll } from '../utils/api'
+import { getDecks } from '../utils/api'
 import Card from './Card'
 
 class DeckList extends Component {
