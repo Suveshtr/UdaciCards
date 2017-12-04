@@ -4,7 +4,7 @@ This is a mobile flashcard app based upon React Native and Expo APIs. The users 
 
 ## Installing and Starting
 
-* Install latest versions of [Nodejs] (https://nodejs.org/en/) and [yarn] (https://yarnpkg.com/lang/en/)
+* Install latest versions of [Nodejs](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/lang/en/).
 
 * Clone the repository and run
     - `yarn install`
