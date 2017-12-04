@@ -87,7 +87,9 @@ export default class Quiz extends Component {
                 <Text style={styles.resultText}>{score / questions.length * 100}% Correct</Text>
               </View>
               <View style={{ flex: 1 }}>
-                <TouchableOpacity onPress={() => this.setState({ questionNumber: 0, score: 0 })} style={[styles.btn, styles.genericBtn]}>
+                <TouchableOpacity 
+                    onPress={() => this.setState({ questionNumber: 0, score: 0, showAnswer: false })} 
+                    style={[styles.btn, styles.genericBtn]}>
                   <Text style={styles.btnText}>
                     { Platform.OS === 'ios'
                         ? (<Ionicons name="ios-refresh" style={styles.btnIcon} />)
@@ -98,7 +100,7 @@ export default class Quiz extends Component {
                 <TouchableOpacity
                   style={[styles.btn, styles.genericBtn]}
                   onPress={() => this.props.navigation.navigate(
-                    'DeckDetail', { deck: deck.title }
+                    'DeckDetail', { title: title }
                   )}
                 >
                   <Text style={styles.btnText}>
